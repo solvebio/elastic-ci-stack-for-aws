@@ -6,4 +6,4 @@ vendor/
 .bundle/
 *.bak
 extra_tags.json
-
+*.un~
