@@ -16,7 +16,7 @@ Features:
 - Docker Registry push/pull support
 - CloudWatch logs for system and buildkite agent events
 - CloudWatch metrics from the Buildkite API
-- Support for stable, unstable or experimental Buildkite Agent releases
+- Support for stable, beta or edge Buildkite Agent releases
 - Create as many instances of the stack as you need
 - Rolling updates to stack instances to reduce interruption
 
