@@ -18,8 +18,7 @@
               "device_name": "/dev/xvdb",
               "delete_on_termination": true,
               "snapshot_id": "snap-00e6e812658f06a77",
-              "volume_type": "gp2",
-              "encrypted": true
+              "volume_type": "gp2"
           }
       ]
     }
