@@ -83,12 +83,15 @@ aws-vault exec some-profile -- make create-stack
 
 Adding extra tags to the stack (including the EC2 instances) can be done via `extra_tags.json` (see [`extra_tags.json.example`](extra_tags.json.example) for usage).
 
+Next up you will need to upload source control credentials to the s3 bucket that you specified for `SecretsBucket` parameter. Check [Build Secrets](#buildsecrets) further down.
+
+
 ## What’s On Each Machine?
 
-* [Amazon Linux](https://aws.amazon.com/amazon-linux-ami/)
+* [Amazon Linux 2016.09.1](https://aws.amazon.com/amazon-linux-ami/)
 * [Buildkite Agent](https://buildkite.com/docs/agent)
-* [Docker](https://www.docker.com)
-* [Docker Compose](https://docs.docker.com/compose/)
+* [Docker 1.12.5](https://www.docker.com)
+* [Docker Compose 1.9.0](https://docs.docker.com/compose/)
 * [aws-cli](https://aws.amazon.com/cli/) - useful for performing any ops-related tasks
 * [jq](https://stedolan.github.io/jq/) - useful for manipulating JSON responses from cli tools such as aws-cli or the Buildkite API
 * [docker-gc](https://github.com/spotify/docker-gc) - removes old docker images
@@ -193,9 +196,10 @@ You’ll find the stack’s metrics under "Custom Metrics > Buildkite" within Cl
 
 Each instance streams both system messages and Buildkite Agent logs to CloudWatch Logs under two log groups:
 
-* `/var/log/messages` - system logs
+* `/var/log/messages` - System logs
 * `/var/log/buildkite-agent.log` - Buildkite Agent logs
 * `/var/log/docker` - Docker daemon logs
+* `/var/log/elastic-stack.log` - Boot process logs
 
 Within each stream the logs are grouped by instance id.
 
