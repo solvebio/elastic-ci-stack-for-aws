@@ -5,25 +5,30 @@
     "goarch": "amd64",
     "instance_type": "m5.xlarge"
   },
-
   "builders": [
     {
       "type": "amazon-ebs",
       "region": "{{user `region`}}",
+      "vpc_id": "vpc-90812ff4",
+      "subnet_id": "subnet-d1dca68a",
       "source_ami_filter": {
         "filters": {
           "name": "amzn2-ami-hvm-2.0.*-gp2",
           "architecture": "{{user `arch`}}",
           "virtualization-type": "hvm"
         },
-        "owners": ["amazon"],
+        "owners": [
+          "amazon"
+        ],
         "most_recent": true
       },
       "instance_type": "{{user `instance_type`}}",
       "ssh_username": "ec2-user",
       "ami_name": "buildkite-stack-linux-{{user `arch`}}-{{isotime | clean_resource_name}}",
       "ami_description": "Buildkite Elastic Stack (Amazon Linux 2 LTS w/ docker)",
-      "ami_groups": ["all"]
+      "ami_groups": [
+        "all"
+      ]
     }
   ],
   "provisioners": [
@@ -72,10 +77,13 @@
     },
     {
       "type": "shell",
+      "script": "scripts/install-solvebio.sh"
+    },
+    {
+      "type": "shell",
       "inline": [
         "rm /home/ec2-user/.ssh/authorized_keys"
       ]
     }
   ]
 }
-
